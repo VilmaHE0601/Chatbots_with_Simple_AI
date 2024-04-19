@@ -205,6 +205,13 @@ client.run(token)
 <img width="488" alt="Screenshot 2024-04-19 at 13 15 33" src="https://github.com/VilmaHE0601/Chatbots_with_Simple_AI/assets/146425185/161e085a-cc45-458c-8ebb-5f0b6fda1da9">
 
 ## Reflection
+I first settled on Dobby as the main character for this Chatbot during the process, this is because I really like the character of Dobby the elf from Harry Potter, he is very loyal and cute. And I'm a person who struggles with what cocktail to drink every time, I think each cocktail has its own specific meaning and mood, so I thought it would be a good choice to combine the two. The biggest challenge I encountered in this process was how to avoid the "Wrong" button popping up every time there was no option, because I thought that after Dobby provided the correct option for the user, the user didn't need to provide feedback to the system. I added `good_result=True` to a few specific Nodes and added the following logic to the third part of the code: Create GuessOptionsView Class:
 
+1. If the current node node has any children. If `node.children` is empty, it has reached the end of the decision tree.
+2. If the end is reached and `node.good_result` is False, it means that this is not a good result. The bot will send a message prompting "Hmm..." plus the value of the current node, and show a WrongView view.
+3. If `node.good_result` is True, the bot will simply send a message with the value of the node, which represents a correct or positive result.
+4. If the current node has `children`, meaning that the decision tree is not yet finished, the bot will send a message displaying the value of the current node with a GuessOptionView view, which will contain further options for the user to choose from.
+
+This ensures that the Wrong View view is no longer displayed when the user is satisfied with the suggestions made by Dobby.
 
 
